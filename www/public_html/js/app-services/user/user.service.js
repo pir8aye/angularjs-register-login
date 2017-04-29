@@ -10,40 +10,37 @@
         // Firebase Ref
         var ref = firebase.database().ref().child("users");
 
+        // Create
+        this.Create = function (uid, data) {
+            var user = $firebaseObject(ref.child(uid));
+            user.forename = data.forename;
+            user.surname = data.surname;
+            return user.$save().then(handleSuccess, handleError);
+        };
+
         // Get All
         this.GetAll = function () {
             return $firebaseArray(ref);
         };
 
-        // 
+        // Get By UID
         this.GetByUID = function (uid) {
             return $firebaseObject(ref.child(uid));
         };
-//        
-//        // 
-//        this.Create = function (user) {
-//            return $http.post("/api/users", $.param(user)).then(handleSuccess, handleError("Error creating user"));
-//        };
-//        // 
-//        this.Delete = function (id) {
-//            return $http.delete("/api/users/" + id).then(handleSuccess, handleError("Error deleting user"));
-//        };
-//        // 
-//        this.Update = function (user) {
-//            return $http.put("/api/users/" + user.id, user).then(handleSuccess, handleError("Error updating user"));
-//        };
-//        // 
-//        function handleSuccess(res) {
-//            return res.data;
-//        }
-//        // 
-//        function handleError(error) {
-//            return function () {
-//                return {
-//                    success: false,
-//                    message: error
-//                };
-//            };
-//        }
+
+        // Handle Success
+        function handleSuccess(ref) {
+            return {
+                success: true
+            };
+        }
+
+        // Handle Error
+        function handleError(error) {
+            return {
+                message: error.message,
+                success: false
+            };
+        }
     }
 })();
