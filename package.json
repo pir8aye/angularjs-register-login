@@ -1,0 +1,8 @@
+{
+    "name": "angularjs-register-login",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "anddyer",
+    "contributors": [],
+    "dependencies": {}
+}
