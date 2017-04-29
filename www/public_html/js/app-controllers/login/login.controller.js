@@ -6,23 +6,32 @@
     LoginController.$inject = ["$location", "$scope", "AuthService", "FlashService"];
 
     function LoginController($location, $scope, AuthService, FlashService) {
+
         // 
         $scope.user = {};
+
         // 
-        $scope.loading = false;
+        $scope.isLoading = false;
+
         // 
         $scope.Login = function () {
-            $scope.loading = true;
+            $scope.isLoading = true;
             var email = $scope.user.email;
             var password = $scope.user.password;
             AuthService.LoginWithEmail(email, password).then(function (response) {
                 if (response.success) {
-                    AuthService.SetCurrentUser(response.data);
+                    AuthService.SetCurrentUser(response.uid);
                     $location.path("/");
+                } else {
+                    FlashService.Danger(response.message);
+                    $scope.isLoading = false;
                 }
-                FlashService.Danger("");
-                $scope.loading = false;
             });
         };
+
+        // Reset the users login status.
+        (function () {
+            AuthService.Logout();
+        })();
     }
 })();

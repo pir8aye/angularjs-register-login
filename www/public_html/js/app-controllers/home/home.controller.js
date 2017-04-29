@@ -3,17 +3,11 @@
 
     myApp.controller("HomeController", HomeController);
 
-    HomeController.$inject = ["$rootScope", "$scope", "UserService"];
+    HomeController.$inject = ["$scope", "user", "users"];
 
-    function HomeController($rootScope, $scope, UserService) {
-        // 
-        $scope.user = {};
-        // 
-        (function () {
-            var userID = $rootScope.globals.currentUser.id;
-            UserService.GetByID(userID).then(function (user) {
-                $scope.user = user;
-            });
-        })();
+    function HomeController($scope, user, users) {
+
+        $scope.user = user;
+        $scope.users = users;
     }
 })();
