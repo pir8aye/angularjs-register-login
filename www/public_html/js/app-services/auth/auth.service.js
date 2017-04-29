@@ -14,7 +14,7 @@
         this.LoginWithEmail = function (email, password) {
             return auth.$signInWithEmailAndPassword(email, password).then(function (firebaseUser) {
                 return {
-                    uid: firebaseUser.iid,
+                    uid: firebaseUser.uid,
                     success: true
                 };
             }, function (error) {

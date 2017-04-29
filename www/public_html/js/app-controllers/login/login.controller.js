@@ -6,10 +6,13 @@
     LoginController.$inject = ["$location", "$scope", "AuthService", "FlashService"];
 
     function LoginController($location, $scope, AuthService, FlashService) {
+
         // 
         $scope.user = {};
+
         // 
         $scope.loading = false;
+
         // 
         $scope.Login = function () {
             $scope.loading = true;
@@ -25,5 +28,10 @@
                 }
             });
         };
+
+        //
+        (function () {
+            AuthService.Logout();
+        })();
     }
 })();
