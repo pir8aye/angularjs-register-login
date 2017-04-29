@@ -3,16 +3,13 @@
 
     myApp.run(Run);
 
-    Run.$inject = ["$cookies", "$http", "$location", "$rootScope"];
+    Run.$inject = ["$cookies", "$location", "$rootScope"];
 
-    function Run($cookies, $http, $location, $rootScope) {
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + 'authdata'; //del
+    // Redirects to the login page if the user is not logged in and trying to
+    // access a restricted page.
+    function Run($cookies, $location, $rootScope) {
         $rootScope.globals = $cookies.getObject("globals") || {};
-        if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common["Authorization"] = "Basic " + $rootScope.globals.currentUser.authdata;
-        }
         $rootScope.$on("$locationChangeStart", function (event, next, current) {
-            // redirect to login page if not logged in and trying to access a restricted page
             var restrictedPage = $.inArray($location.path(), ["/login", "/register"]) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {

@@ -3,31 +3,42 @@
 
     myApp.service("AuthService", AuthService);
 
-    AuthService.$inject = ["$cookieStore", "$http", "$rootScope"];
+    AuthService.$inject = ["$cookieStore", "$firebaseAuth", "$rootScope"];
 
-    function AuthService($cookieStore, $http, $rootScope) {
-        // 
+    function AuthService($cookieStore, $firebaseAuth, $rootScope) {
+
+        // Auth
+        var auth = $firebaseAuth();
+
+        // Login With Email
         this.LoginWithEmail = function (email, password) {
-            return $http.post("http://dev/myapp/settings/account", $.param({email: email, password: password})).then(handleSuccess, handleError(""));
-        };
-        // 
-        this.Logout = function () {
-            $rootScope.globals = {};
-            $cookieStore.remove('globals');
-        };
-        // 
-        this.SetCurrentUser = function (user) {};
-        //
-        function handleSuccess(res) {
-            return res.data;
-        }
-        //
-        function handleError(error) {
-            return function () {
+            return auth.$signInWithEmailAndPassword(email, password).then(function (firebaseUser) {
                 return {
+                    uid: firebaseUser.uid,
+                    success: true
+                };
+            }, function (error) {
+                return {
+                    message: error.message,
                     success: false
                 };
+            });
+        };
+        
+        // Logout
+        this.Logout = function () {
+            $rootScope.globals = {};
+            $cookieStore.remove("globals");
+        };
+        
+        // Set Current User
+        this.SetCurrentUser = function (uid) {
+            $rootScope.globals = {
+                currentUser: {
+                    uid: uid
+                }
             };
-        }
+            $cookieStore.put("globals", $rootScope.globals);
+        };
     }
 })();

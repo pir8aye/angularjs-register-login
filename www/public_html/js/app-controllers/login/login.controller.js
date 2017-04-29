@@ -6,10 +6,13 @@
     LoginController.$inject = ["$location", "$scope", "AuthService", "FlashService"];
 
     function LoginController($location, $scope, AuthService, FlashService) {
+
         // 
         $scope.user = {};
+
         // 
         $scope.loading = false;
+
         // 
         $scope.Login = function () {
             $scope.loading = true;
@@ -17,12 +20,18 @@
             var password = $scope.user.password;
             AuthService.LoginWithEmail(email, password).then(function (response) {
                 if (response.success) {
-                    AuthService.SetCurrentUser(response.data);
+                    AuthService.SetCurrentUser(response.uid);
                     $location.path("/");
+                } else {
+                    FlashService.Danger(response.message);
+                    $scope.loading = false;
                 }
-                FlashService.Danger("");
-                $scope.loading = false;
             });
         };
+
+        //
+        (function () {
+            AuthService.Logout();
+        })();
     }
 })();
