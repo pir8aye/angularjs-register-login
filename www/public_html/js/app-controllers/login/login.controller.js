@@ -17,11 +17,12 @@
             var password = $scope.user.password;
             AuthService.LoginWithEmail(email, password).then(function (response) {
                 if (response.success) {
-                    AuthService.SetCurrentUser(response.data);
+                    AuthService.SetCurrentUser(response.uid);
                     $location.path("/");
+                } else {
+                    FlashService.Danger(response.message);
+                    $scope.loading = false;
                 }
-                FlashService.Danger("");
-                $scope.loading = false;
             });
         };
     }
