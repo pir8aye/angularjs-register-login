@@ -22,7 +22,11 @@
                         </button>
                         <a class="navbar-brand" href="#">myApp</a>
                     </div>
-                    <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse"></div>
+                    <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right" ng-if="globals.currentUser">
+                            <li><a href="#!/logoin">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
             <div id="container">

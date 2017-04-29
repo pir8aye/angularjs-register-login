@@ -11,11 +11,11 @@
         $scope.user = {};
 
         // 
-        $scope.loading = false;
+        $scope.isLoading = false;
 
         // 
         $scope.Login = function () {
-            $scope.loading = true;
+            $scope.isLoading = true;
             var email = $scope.user.email;
             var password = $scope.user.password;
             AuthService.LoginWithEmail(email, password).then(function (response) {
@@ -24,12 +24,12 @@
                     $location.path("/");
                 } else {
                     FlashService.Danger(response.message);
-                    $scope.loading = false;
+                    $scope.isLoading = false;
                 }
             });
         };
 
-        //
+        // Reset the users login status.
         (function () {
             AuthService.Logout();
         })();

@@ -3,25 +3,36 @@
 
     myApp.controller("RegisterController", RegisterController);
 
-    RegisterController.$inject = ["$location", "$scope", "FlashService", "UserService"];
+    RegisterController.$inject = ["$location", "$scope", "AuthService", "FlashService", "UserService"];
 
-    function RegisterController($location, $scope, FlashService, UserService) {
+    function RegisterController($location, $scope, AuthService, FlashService, UserService) {
+        
         // 
         $scope.user = {};
+        
         // 
-        $scope.loading = false;
+        $scope.isLoading = false;
+        
         // 
         $scope.Register = function () {
-            $scope.loading = true;
-            UserService.Create($scope.user)
-                    .then(function (response) {
-                        if (response.success) {
-                            FlashService.Success("Registration successful", true);
-                            $location.path("/login");
-                        }
-                        FlashService.Danger(response.message);
-                        $scope.loading = false;
-                    });
+            $scope.isLoading = true;
+            var email = $scope.user.email;
+            var password = $scope.user.password;
+            AuthService.Register(email, password).then(function (response) {
+                if (response.success) {
+                    UserService.Create(response.uid, $scope.user);
+                    FlashService.Success("Registration successful", true);
+                    $location.path("/login");
+                } else {
+                    FlashService.Danger(response.message);
+                    $scope.isLoading = false;
+                }
+            });
         };
+
+        // Reset the users login status.
+        (function () {
+            AuthService.Logout();
+        })();
     }
 })();
