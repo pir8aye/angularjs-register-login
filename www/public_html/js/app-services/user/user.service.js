@@ -5,6 +5,13 @@
 
     UserService.$inject = ["$firebaseArray", "$firebaseObject"];
 
+    /**
+     * User Service:
+     * @param $firebaseArray
+     * @param $firebaseObject
+     * @returns object
+     * @since 1.0
+     */
     function UserService($firebaseArray, $firebaseObject) {
 
         // Firebase Ref
@@ -12,6 +19,20 @@
 
         // Create
         this.Create = function (uid, data) {
+            var user = $firebaseObject(ref.child(uid));
+            user.forename = data.forename;
+            user.surname = data.surname;
+            return user.$save().then(handleSuccess, handleError);
+        };
+
+        // Delete
+        this.Delete = function (uid) {
+            var user = $firebaseObject(ref.child(uid));
+            user.$remove().then(handleSuccess, handleError);
+        };
+
+        // Update
+        this.Update = function (uid, data) {
             var user = $firebaseObject(ref.child(uid));
             user.forename = data.forename;
             user.surname = data.surname;

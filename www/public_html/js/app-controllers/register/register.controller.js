@@ -5,14 +5,24 @@
 
     RegisterController.$inject = ["$location", "$scope", "AuthService", "FlashService", "UserService"];
 
+    /**
+     * Register Controller:
+     * @param $location
+     * @param $scope
+     * @param AuthService
+     * @param FlashService
+     * @param UserService
+     * @returns void
+     * @since 1.0
+     */
     function RegisterController($location, $scope, AuthService, FlashService, UserService) {
-        
+
         // 
         $scope.user = {};
-        
+
         // 
         $scope.isLoading = false;
-        
+
         // 
         $scope.Register = function () {
             $scope.isLoading = true;

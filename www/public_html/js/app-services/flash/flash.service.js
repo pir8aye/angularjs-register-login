@@ -5,7 +5,15 @@
     
     FlashService.$inject = ["$rootScope"];
     
+    /**
+     * Flash Service:
+     * @param $rootScope
+     * @returns object
+     * @since 1.0
+     */
     function FlashService($rootScope) {
+        
+        // 
         (function () {
             $rootScope.$on("$locationChangeStart", function () {
                 ClearFlashMessage();
@@ -21,7 +29,8 @@
                 }
             }
         })();
-        // 
+        
+        // Danger
         this.Danger = function (message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
@@ -29,7 +38,8 @@
                 keepAfterLocationChange: keepAfterLocationChange
             };
         };
-        // 
+        
+        // Info
         this.Info = function (message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
@@ -37,7 +47,8 @@
                 keepAfterLocationChange: keepAfterLocationChange
             };
         };
-        // 
+        
+        // Success
         this.Success = function (message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
@@ -45,7 +56,8 @@
                 keepAfterLocationChange: keepAfterLocationChange
             };
         };
-        // 
+        
+        // Warning
         this.Warning = function (message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
