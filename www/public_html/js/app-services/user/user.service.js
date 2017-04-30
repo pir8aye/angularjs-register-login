@@ -5,6 +5,13 @@
 
     UserService.$inject = ["$firebaseArray", "$firebaseObject"];
 
+    /**
+     * User Service:
+     * @param $firebaseArray
+     * @param $firebaseObject
+     * @returns object
+     * @since 1.0
+     */
     function UserService($firebaseArray, $firebaseObject) {
 
         // Firebase Ref

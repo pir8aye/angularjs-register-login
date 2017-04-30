@@ -5,6 +5,14 @@
 
     AuthService.$inject = ["$cookieStore", "$firebaseAuth", "$rootScope"];
 
+    /**
+     * Auth Service:
+     * @param $cookieStore
+     * @param $firebaseAuth
+     * @param $rootScope
+     * @returns object
+     * @since 1.0
+     */
     function AuthService($cookieStore, $firebaseAuth, $rootScope) {
 
         // Auth
@@ -35,21 +43,21 @@
             };
             $cookieStore.put("globals", $rootScope.globals);
         };
-    }
 
-    // Handle Success
-    function handleSuccess(firebaseUser) {
-        return {
-            uid: firebaseUser.uid,
-            success: true
-        };
-    }
+        // Handle Success
+        function handleSuccess(firebaseUser) {
+            return {
+                uid: firebaseUser.uid,
+                success: true
+            };
+        }
 
-    // Handle Error
-    function handleError(error) {
-        return {
-            message: error.message,
-            success: false
-        };
+        // Handle Error
+        function handleError(error) {
+            return {
+                message: error.message,
+                success: false
+            };
+        }
     }
 })();
