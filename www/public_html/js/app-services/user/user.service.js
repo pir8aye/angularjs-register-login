@@ -25,6 +25,20 @@
             return user.$save().then(handleSuccess, handleError);
         };
 
+        // Delete
+        this.Delete = function (uid) {
+            var user = $firebaseObject(ref.child(uid));
+            user.$remove().then(handleSuccess, handleError);
+        };
+
+        // Update
+        this.Update = function (uid, data) {
+            var user = $firebaseObject(ref.child(uid));
+            user.forename = data.forename;
+            user.surname = data.surname;
+            return user.$save().then(handleSuccess, handleError);
+        };
+
         // Get All
         this.GetAll = function () {
             return $firebaseArray(ref);
