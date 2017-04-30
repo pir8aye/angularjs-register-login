@@ -7,5 +7,5 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// Initialise angular
+// Initialise Angular
 var myApp = angular.module("myApp", ["firebase", "ngCookies", "ngResource", "ngRoute"]);
