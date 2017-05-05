@@ -14,11 +14,11 @@
             resolve: {
                 user: ["$rootScope", "UserService", function ($rootScope, UserService) {
                         var uid = $rootScope.globals.currentUser.uid;
-                        return UserService.GetByUID(uid).$loaded();
+                        return UserService.getByUID(uid).$loaded();
                     }
                 ],
                 users: ["UserService", function (UserService) {
-                        return UserService.GetAll().$loaded();
+                        return UserService.getAll().$loaded();
                     }
                 ]
             },

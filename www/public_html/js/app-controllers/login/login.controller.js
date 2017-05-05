@@ -16,23 +16,23 @@
 
         $scope.isLoading = false;
 
-        $scope.Login = function () {
+        $scope.loginSubmit = function () {
             $scope.isLoading = true;
             var email = $scope.user.email;
             var password = $scope.user.password;
-            AuthService.LoginWithEmail(email, password).then(function (response) {
+            AuthService.loginWithEmail(email, password).then(function (response) {
                 if (response.success) {
-                    AuthService.SetCurrentUser(response.uid);
+                    AuthService.setCurrentUser(response.uid);
                     $location.path("/");
                 } else {
-                    FlashService.Danger(response.message);
+                    FlashService.danger(response.message);
                     $scope.isLoading = false;
                 }
             });
         };
 
         (function () {
-            AuthService.Logout();
+            AuthService.logout();
         })();
     }
 

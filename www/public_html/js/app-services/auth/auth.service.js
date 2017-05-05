@@ -35,23 +35,23 @@
         }
 
         // Login With Email
-        this.LoginWithEmail = function (email, password) {
+        this.loginWithEmail = function (email, password) {
             return auth.$signInWithEmailAndPassword(email, password).then(handleSuccess, handleError);
         };
 
         // Logout
-        this.Logout = function () {
+        this.logout = function () {
             $rootScope.globals = {};
             $cookieStore.remove("globals");
         };
 
         // Register
-        this.Register = function (email, password) {
+        this.register = function (email, password) {
             return auth.$createUserWithEmailAndPassword(email, password).then(handleSuccess, handleError);
         };
 
         // Set Current User
-        this.SetCurrentUser = function (uid) {
+        this.setCurrentUser = function (uid) {
             $rootScope.globals = {
                 currentUser: {
                     uid: uid

@@ -19,17 +19,17 @@
         $scope.isLoading = false;
 
         // 
-        $scope.Register = function () {
+        $scope.registerSubmit = function () {
             $scope.isLoading = true;
             var email = $scope.user.email;
             var password = $scope.user.password;
-            AuthService.Register(email, password).then(function (response) {
+            AuthService.register(email, password).then(function (response) {
                 if (response.success) {
-                    UserService.Create(response.uid, $scope.user);
-                    FlashService.Success("Registration successful", true);
+                    UserService.create(response.uid, $scope.user);
+                    FlashService.success("Registration successful", true);
                     $location.path("/login");
                 } else {
-                    FlashService.Danger(response.message);
+                    FlashService.danger(response.message);
                     $scope.isLoading = false;
                 }
             });
@@ -37,7 +37,7 @@
 
         // Reset the users login status.
         (function () {
-            AuthService.Logout();
+            AuthService.logout();
         })();
     }
 
