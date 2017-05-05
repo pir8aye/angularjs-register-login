@@ -6,7 +6,7 @@
                     <h3 class="panel-title text-center">Account Login</h3>
                 </div>
                 <div class="panel-body">
-                    <form name="login" ng-submit="Login()">
+                    <form name="login" ng-submit="loginSubmit()">
                         <div class="form-group" ng-class="{'has-error': login.email.$dirty && login.email.$error.required}">
                             <label for="email-input" class="control-label">Email <span class="text-danger">*</span></label>
                             <input type="text" id="email-input" class="form-control" name="email" autocomplete="off" ng-disabled="isLoading" ng-model="user.email" required />

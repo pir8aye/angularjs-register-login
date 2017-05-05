@@ -29,7 +29,7 @@
         }
 
         // Create
-        this.Create = function (uid, data) {
+        this.create = function (uid, data) {
             var user = $firebaseObject(ref.child(uid));
             user.forename = data.forename;
             user.surname = data.surname;
@@ -37,13 +37,13 @@
         };
 
         // Delete
-        this.Delete = function (uid) {
+        this.delete = function (uid) {
             var user = $firebaseObject(ref.child(uid));
             user.$remove().then(handleSuccess, handleError);
         };
 
         // Update
-        this.Update = function (uid, data) {
+        this.update = function (uid, data) {
             var user = $firebaseObject(ref.child(uid));
             user.forename = data.forename;
             user.surname = data.surname;
@@ -51,12 +51,12 @@
         };
 
         // Get All
-        this.GetAll = function () {
+        this.getAll = function () {
             return $firebaseArray(ref);
         };
 
         // Get By UID
-        this.GetByUID = function (uid) {
+        this.getByUID = function (uid) {
             return $firebaseObject(ref.child(uid));
         };
     }

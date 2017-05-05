@@ -11,7 +11,7 @@
         
         // 
         (function () {
-            function ClearFlashMessage() {
+            function clearFlashMessage() {
                 var flash = $rootScope.flash;
                 if (flash) {
                     if (!flash.keepAfterLocationChange) {
@@ -22,12 +22,12 @@
                 }
             }
             $rootScope.$on("$locationChangeStart", function () {
-                ClearFlashMessage();
+                clearFlashMessage();
             });
         })();
         
         // Danger
-        this.Danger = function (message, keepAfterLocationChange) {
+        this.danger = function (message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
                 type: "danger",
@@ -36,7 +36,7 @@
         };
         
         // Info
-        this.Info = function (message, keepAfterLocationChange) {
+        this.info = function (message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
                 type: "info",
@@ -45,7 +45,7 @@
         };
         
         // Success
-        this.Success = function (message, keepAfterLocationChange) {
+        this.success = function (message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
                 type: "success",
@@ -54,7 +54,7 @@
         };
         
         // Warning
-        this.Warning = function (message, keepAfterLocationChange) {
+        this.warning = function (message, keepAfterLocationChange) {
             $rootScope.flash = {
                 message: message,
                 type: "warning",
