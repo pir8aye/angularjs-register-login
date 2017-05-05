@@ -1,11 +1,11 @@
 (function () {
     "use strict";
 
-    myApp.service("AuthService", AuthService);
-
-    AuthService.$inject = ["$cookieStore", "$firebaseAuth", "$rootScope"];
-
     /**
+     
+     AuthService.$inject = ["$cookieStore", "$firebaseAuth", "$rootScope"];
+     
+     myApp.service("AuthService", AuthService);
      * Auth Service:
      * @param $cookieStore
      * @param $firebaseAuth
@@ -17,6 +17,22 @@
 
         // Auth
         var auth = $firebaseAuth();
+
+        // Handle Success
+        function handleSuccess(firebaseUser) {
+            return {
+                uid: firebaseUser.uid,
+                success: true
+            };
+        }
+
+        // Handle Error
+        function handleError(error) {
+            return {
+                message: error.message,
+                success: false
+            };
+        }
 
         // Login With Email
         this.LoginWithEmail = function (email, password) {
@@ -43,21 +59,10 @@
             };
             $cookieStore.put("globals", $rootScope.globals);
         };
-
-        // Handle Success
-        function handleSuccess(firebaseUser) {
-            return {
-                uid: firebaseUser.uid,
-                success: true
-            };
-        }
-
-        // Handle Error
-        function handleError(error) {
-            return {
-                message: error.message,
-                success: false
-            };
-        }
     }
+
+    AuthService.$inject = ["$cookieStore", "$firebaseAuth", "$rootScope"];
+
+    myApp.service("AuthService", AuthService);
+
 })();

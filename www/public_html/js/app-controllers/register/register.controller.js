@@ -1,10 +1,5 @@
 (function () {
     "use strict";
-
-    myApp.controller("RegisterController", RegisterController);
-
-    RegisterController.$inject = ["$location", "$scope", "AuthService", "FlashService", "UserService"];
-
     /**
      * Register Controller:
      * @param $location
@@ -45,4 +40,9 @@
             AuthService.Logout();
         })();
     }
+
+    RegisterController.$inject = ["$location", "$scope", "AuthService", "FlashService", "UserService"];
+
+    myApp.controller("RegisterController", RegisterController);
+
 })();

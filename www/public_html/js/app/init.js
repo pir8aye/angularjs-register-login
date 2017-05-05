@@ -1,10 +1,6 @@
 (function () {
     "use strict";
 
-    myApp.run(Run);
-
-    Run.$inject = ["$cookies", "$location", "$rootScope"];
-
     /**
      * Run: Redirects to the login page if the user is not logged in and trying
      * to access a restricted page.
@@ -27,4 +23,9 @@
             $rootScope.title = current.$$route.title;
         });
     }
+
+    Run.$inject = ["$cookies", "$location", "$rootScope"];
+
+    myApp.run(Run);
+    
 })();

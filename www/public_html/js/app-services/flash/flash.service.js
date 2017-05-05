@@ -1,10 +1,6 @@
 (function () {
     "use strict";
     
-    myApp.service("FlashService", FlashService);
-    
-    FlashService.$inject = ["$rootScope"];
-    
     /**
      * Flash Service:
      * @param $rootScope
@@ -15,9 +11,6 @@
         
         // 
         (function () {
-            $rootScope.$on("$locationChangeStart", function () {
-                ClearFlashMessage();
-            });
             function ClearFlashMessage() {
                 var flash = $rootScope.flash;
                 if (flash) {
@@ -28,6 +21,9 @@
                     }
                 }
             }
+            $rootScope.$on("$locationChangeStart", function () {
+                ClearFlashMessage();
+            });
         })();
         
         // Danger
@@ -66,4 +62,9 @@
             };
         };
     }
+    
+    FlashService.$inject = ["$rootScope"];
+    
+    myApp.service("FlashService", FlashService);
+    
 })();

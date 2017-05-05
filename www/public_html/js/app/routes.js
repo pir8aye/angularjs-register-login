@@ -1,9 +1,5 @@
 (function () {
     "use strict";
-
-    myApp.config(Routes);
-
-    Routes.$inject = ["$routeProvider"];
     
     /**
      * Routes:
@@ -37,4 +33,9 @@
             templateUrl: "js/app-controllers/register/register.view.html"
         }).otherwise({redirectTo: "/login"});
     }
+
+    Routes.$inject = ["$routeProvider"];
+
+    myApp.config(Routes);
+    
 })();
