@@ -1,10 +1,6 @@
 (function () {
     "use strict";
 
-    myApp.service("UserService", UserService);
-
-    UserService.$inject = ["$firebaseArray", "$firebaseObject"];
-
     /**
      * User Service:
      * @param $firebaseArray
@@ -16,6 +12,21 @@
 
         // Firebase Ref
         var ref = firebase.database().ref().child("users");
+
+        // Handle Success
+        function handleSuccess(ref) {
+            return {
+                success: true
+            };
+        }
+
+        // Handle Error
+        function handleError(error) {
+            return {
+                message: error.message,
+                success: false
+            };
+        }
 
         // Create
         this.Create = function (uid, data) {
@@ -48,20 +59,10 @@
         this.GetByUID = function (uid) {
             return $firebaseObject(ref.child(uid));
         };
-
-        // Handle Success
-        function handleSuccess(ref) {
-            return {
-                success: true
-            };
-        }
-
-        // Handle Error
-        function handleError(error) {
-            return {
-                message: error.message,
-                success: false
-            };
-        }
     }
+
+    UserService.$inject = ["$firebaseArray", "$firebaseObject"];
+
+    myApp.service("UserService", UserService);
+
 })();
