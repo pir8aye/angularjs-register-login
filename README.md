@@ -1,5 +1,7 @@
 # AngularJS Register & Login (using Firebase)
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0bb79778c6d749e98976b15a86789eb9)](https://www.codacy.com/app/andrewdyer/angularjs-register-login?utm_source=github.com&utm_medium=referral&utm_content=andrewdyer/angularjs-register-login&utm_campaign=badger)
+
 A basic example of user registration and login using AngularJS and Firebase.
 
 ## Installation
