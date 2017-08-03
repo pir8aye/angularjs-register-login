@@ -1,48 +1,45 @@
-(function () {
-    "use strict";
+"use strict";
+/**
+ * Register Controller:
+ * @param $location
+ * @param $scope
+ * @param AuthService
+ * @param FlashService
+ * @param UserService
+ * @returns void
+ * @since 1.0
+ */
+function RegisterController($location, $scope, AuthService, FlashService, UserService) {
 
-    myApp.controller("RegisterController", RegisterController);
+    // 
+    $scope.user = {};
 
-    RegisterController.$inject = ["$location", "$scope", "AuthService", "FlashService", "UserService"];
+    // 
+    $scope.isLoading = false;
 
-    /**
-     * Register Controller:
-     * @param $location
-     * @param $scope
-     * @param AuthService
-     * @param FlashService
-     * @param UserService
-     * @returns void
-     * @since 1.0
-     */
-    function RegisterController($location, $scope, AuthService, FlashService, UserService) {
+    // 
+    $scope.registerSubmit = function () {
+        $scope.isLoading = true;
+        var email = $scope.user.email;
+        var password = $scope.user.password;
+        AuthService.register(email, password).then(function (response) {
+            if (response.success) {
+                UserService.create(response.uid, $scope.user);
+                FlashService.success("Registration successful", true);
+                $location.path("/login");
+            } else {
+                FlashService.danger(response.message);
+                $scope.isLoading = false;
+            }
+        });
+    };
 
-        // 
-        $scope.user = {};
+    // Reset the users login status.
+    (function () {
+        AuthService.logout();
+    })();
+}
 
-        // 
-        $scope.isLoading = false;
+RegisterController.$inject = ["$location", "$scope", "AuthService", "FlashService", "UserService"];
 
-        // 
-        $scope.Register = function () {
-            $scope.isLoading = true;
-            var email = $scope.user.email;
-            var password = $scope.user.password;
-            AuthService.Register(email, password).then(function (response) {
-                if (response.success) {
-                    UserService.Create(response.uid, $scope.user);
-                    FlashService.Success("Registration successful", true);
-                    $location.path("/login");
-                } else {
-                    FlashService.Danger(response.message);
-                    $scope.isLoading = false;
-                }
-            });
-        };
-
-        // Reset the users login status.
-        (function () {
-            AuthService.Logout();
-        })();
-    }
-})();
+myApp.controller("RegisterController", RegisterController);

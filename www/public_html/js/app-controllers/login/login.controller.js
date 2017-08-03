@@ -1,42 +1,40 @@
-(function () {
-    "use strict";
+"use strict";
 
-    myApp.controller("LoginController", LoginController);
+/**
+ * Login Controller:
+ * @param $location
+ * @param $scope
+ * @param AuthService
+ * @param FlashService
+ * @returns void
+ * @since 1.0
+ */
+function LoginController($location, $scope, AuthService, FlashService) {
 
-    LoginController.$inject = ["$location", "$scope", "AuthService", "FlashService"];
+    $scope.user = {};
 
-    /**
-     * Login Controller:
-     * @param $location
-     * @param $scope
-     * @param AuthService
-     * @param FlashService
-     * @returns void
-     * @since 1.0
-     */
-    function LoginController($location, $scope, AuthService, FlashService) {
+    $scope.isLoading = false;
 
-        $scope.user = {};
+    $scope.loginSubmit = function () {
+        $scope.isLoading = true;
+        var email = $scope.user.email;
+        var password = $scope.user.password;
+        AuthService.loginWithEmail(email, password).then(function (response) {
+            if (response.success) {
+                AuthService.setCurrentUser(response.uid);
+                $location.path("/");
+            } else {
+                FlashService.danger(response.message);
+                $scope.isLoading = false;
+            }
+        });
+    };
 
-        $scope.isLoading = false;
+    (function () {
+        AuthService.logout();
+    })();
+}
 
-        $scope.Login = function () {
-            $scope.isLoading = true;
-            var email = $scope.user.email;
-            var password = $scope.user.password;
-            AuthService.LoginWithEmail(email, password).then(function (response) {
-                if (response.success) {
-                    AuthService.SetCurrentUser(response.uid);
-                    $location.path("/");
-                } else {
-                    FlashService.Danger(response.message);
-                    $scope.isLoading = false;
-                }
-            });
-        };
+LoginController.$inject = ["$location", "$scope", "AuthService", "FlashService"];
 
-        (function () {
-            AuthService.Logout();
-        })();
-    }
-})();
+myApp.controller("LoginController", LoginController);
