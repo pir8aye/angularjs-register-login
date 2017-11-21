@@ -1,24 +1,44 @@
-function Service(Firebase, $firebaseAuth) {
+function Service($cookieStore, $firebaseAuth, $rootScope, Firebase) {
 
     const auth = $firebaseAuth(Firebase.auth());
 
-
-    this.login = (email, password) => {
-        return auth.$signInWithEmailAndPassword(email, password).then(firebaseUser => {
-            return {
-                uid: firebaseUser.uid,
-                success: true
-            }
-        }, error => {
-            return {
-                message: error.message,
-                success: false
-            };
-        });
+    function handleSuccess(firebaseUser) {
+        return {
+            uid: firebaseUser.uid,
+            success: true
+        };
     }
+
+    function handleError(error) {
+        return {
+            message: error.message,
+            success: false
+        };
+    }
+
+    this.loginWithEmail = function (email, password) {
+        return auth.$signInWithEmailAndPassword(email, password).then(handleSuccess, handleError);
+    };
+
+    this.logout = function () {
+        $rootScope.globals = {};
+        $cookieStore.remove('globals');
+    };
+    this.register = function (email, password) {
+        return auth.$createUserWithEmailAndPassword(email, password).then(handleSuccess, handleError);
+    };
+
+    this.setCurrentUser = function (uid) {
+        $rootScope.globals = {
+            currentUser: {
+                uid: uid
+            }
+        };
+        $cookieStore.put('globals', $rootScope.globals);
+    };
 
 }
 
-Service.$inject = ['Firebase', '$firebaseAuth'];
+Service.$inject = ['$cookieStore', '$firebaseAuth', '$rootScope', 'Firebase'];
 
 export default Service;
