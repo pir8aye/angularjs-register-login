@@ -3,8 +3,12 @@ var path = require('path');
 module.exports = {
     entry: './src/js/app.js',
     output: {
-        path: path.join(__dirname, 'public/js'),
+        path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        compress: false
     },
     module: {
         rules: [
@@ -22,9 +26,5 @@ module.exports = {
                 test: /\.json$/
             }
         ]
-    },
-    devServer: {
-        contentBase: path.join(__dirname, 'public'),
-        inline: true
     }
 };
