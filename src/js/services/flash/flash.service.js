@@ -1,53 +1,46 @@
-function FlashService($rootScope) {
 
-        function clearFlashMessage () {
-            const flash = $rootScope.flash;
+class FlashService {
+    constructor($rootScope) {
+        this._rootScope = $rootScope;
+        this._rootScope.$on('$locationChangeStart', () => {
+            const flash = this._rootScope.flash;
             if (flash) {
                 if (!flash.keepAfterLocationChange) {
-                    delete $rootScope.flash;
+                    delete this._rootScope.flash;
                 } else {
                     flash.keepAfterLocationChange = false;
                 }
             }
-        } 
-
-    (() => {
-        $rootScope.$on("$locationChangeStart", () => {
-            clearFlashMessage();
         });
-    })();
-
-    this.danger = (message, keepAfterLocationChange) => {
-        $rootScope.flash = {
+    }
+    danger(message, keepAfterLocationChange) {
+        this._rootScope.flash = {
             message: message,
-            type: "danger",
+            type: 'danger',
             keepAfterLocationChange: keepAfterLocationChange
         };
-    };
-
-    this.info = (message, keepAfterLocationChange) => {
-        $rootScope.flash = {
+    }
+    info(message, keepAfterLocationChange) {
+        this._rootScope.flash = {
             message: message,
-            type: "info",
+            type: 'info',
             keepAfterLocationChange: keepAfterLocationChange
         };
-    };
-
-    this.success = (message, keepAfterLocationChange) => {
-        $rootScope.flash = {
+    }
+    success(message, keepAfterLocationChange) {
+        this._rootScope.flash = {
             message: message,
-            type: "success",
+            type: 'success',
             keepAfterLocationChange: keepAfterLocationChange
         };
-    };
-
-    this.warning = (message, keepAfterLocationChange) => {
-        $rootScope.flash = {
+    }
+    warning(message, keepAfterLocationChange) {
+        this._rootScope.flash = {
             message: message,
-            type: "warning",
+            type: 'warning',
             keepAfterLocationChange: keepAfterLocationChange
         };
-    };
+    }
 }
 
 FlashService.$inject = ['$rootScope'];
