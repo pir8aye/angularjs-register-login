@@ -1,25 +1,13 @@
-"use strict";
+function FirebaseUserService($firebaseArray, $firebaseObject, FirebaseFactory) {
 
-/**
- * User Service:
- * @param $firebaseArray
- * @param $firebaseObject
- * @returns object
- * @since 1.0
- */
-function UserService($firebaseArray, $firebaseObject) {
+    var ref = FirebaseFactory.database().ref().child('users');
 
-    // Firebase Ref
-    var ref = firebase.database().ref().child("users");
-
-    // Handle Success
     function handleSuccess(ref) {
         return {
             success: true
         };
     }
 
-    // Handle Error
     function handleError(error) {
         return {
             message: error.message,
@@ -27,7 +15,6 @@ function UserService($firebaseArray, $firebaseObject) {
         };
     }
 
-    // Create
     this.create = function (uid, data) {
         var user = $firebaseObject(ref.child(uid));
         user.forename = data.forename;
@@ -35,13 +22,11 @@ function UserService($firebaseArray, $firebaseObject) {
         return user.$save().then(handleSuccess, handleError);
     };
 
-    // Delete
     this.delete = function (uid) {
         var user = $firebaseObject(ref.child(uid));
         user.$remove().then(handleSuccess, handleError);
     };
 
-    // Update
     this.update = function (uid, data) {
         var user = $firebaseObject(ref.child(uid));
         user.forename = data.forename;
@@ -49,17 +34,15 @@ function UserService($firebaseArray, $firebaseObject) {
         return user.$save().then(handleSuccess, handleError);
     };
 
-    // Get All
     this.getAll = function () {
         return $firebaseArray(ref);
     };
 
-    // Get By UID
     this.getByUID = function (uid) {
         return $firebaseObject(ref.child(uid));
     };
 }
 
-UserService.$inject = ["$firebaseArray", "$firebaseObject"];
+FirebaseUserService.$inject = ['$firebaseArray', '$firebaseObject', 'FirebaseFactory'];
 
-myApp.service("UserService", UserService);
+export default FirebaseUserService;

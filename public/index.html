@@ -2,12 +2,13 @@
 <html ng-app="myApp">
     <head>
         <title ng-bind="'myApp - ' + title">myApp</title>
+        <base href="/" />
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bower Components -->
-        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div id="wrapper">
@@ -20,11 +21,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">myApp</a>
+                        <a class="navbar-brand" href="/">myApp</a>
                     </div>
                     <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right" ng-if="globals.currentUser">
-                            <li><a href="#!/logoin">Logout</a></li>
+                            <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                            <li><a href="/profile"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+                            <li><a href="/login"><i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -47,25 +50,9 @@
         </div>
         <!-- /#wrapper -->
         <!-- Bower Components -->
-        <script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
-        <script src="bower_components/angular/angular.min.js" type="text/javascript"></script>
-        <script src="bower_components/angular-cookies/angular-cookies.min.js" type="text/javascript"></script>
-        <script src="bower_components/angular-resource/angular-resource.min.js" type="text/javascript"></script>
-        <script src="bower_components/angular-route/angular-route.min.js" type="text/javascript"></script>
-        <script src="bower_components/angularfire/dist/angularfire.min.js" type="text/javascript"></script>
-        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="bower_components/firebase/firebase.js" type="text/javascript"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- App -->
-        <script src="js/app.js" type="text/javascript"></script>
-        <script src="js/app/init.js" type="text/javascript"></script>
-        <script src="js/app/routes.js" type="text/javascript"></script>
-        <!-- App Controllers -->
-        <script src="js/app-controllers/home/home.controller.js" type="text/javascript"></script>
-        <script src="js/app-controllers/login/login.controller.js" type="text/javascript"></script>
-        <script src="js/app-controllers/register/register.controller.js" type="text/javascript"></script>
-        <!-- App Services -->
-        <script src="js/app-services/auth.service.js" type="text/javascript"></script>
-        <script src="js/app-services/flash.service.js" type="text/javascript"></script>
-        <script src="js/app-services/user.service.js" type="text/javascript"></script>
+        <script src="/bundle.js" type="text/javascript"></script>
     </body>
 </html>
