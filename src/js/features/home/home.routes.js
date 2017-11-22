@@ -1,8 +1,15 @@
 function Routes($routeProvider) {
     $routeProvider
             .when('/', {
-                template: require('./home.view.html'),
                 controller: 'HomeController',
+                resolve: {
+                    user: ['$rootScope', 'FirebaseUserService', ($rootScope, FirebaseUserService) => {
+                            const uid = $rootScope.globals.currentUser.uid;
+                            return FirebaseUserService.getByUID(uid).$loaded();
+                        }
+                    ]
+                },
+                template: require('./home.view.html'),
                 title: 'Homepage'
             });
 }

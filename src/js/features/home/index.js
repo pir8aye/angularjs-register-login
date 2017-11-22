@@ -3,8 +3,9 @@ const moduleName = 'myApp.Home';
 import Angular from 'angular';
 import HomeRoutes from './home.routes';
 import HomeController from './home.controller';
+import Firebase from '../../services/firebase';
 
-const dependencies = [];
+const dependencies = [Firebase];
 
 export default Angular
         .module(moduleName, dependencies)

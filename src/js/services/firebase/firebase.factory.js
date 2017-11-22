@@ -1,6 +1,8 @@
 import Firebase from 'firebase';
 
 function FirebaseFactory() {
+    console.log('Initializing Firebase.');
+    
     Firebase.initializeApp({
         apiKey: 'AIzaSyDTs23PtJwxkRE59yPn25nx_26_J1y9eYQ',
         authDomain: 'angularjs-register-login.firebaseapp.com',

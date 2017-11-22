@@ -1,7 +1,7 @@
-function HomeController() {
-    
+function HomeController($scope, user) {
+    $scope.user = user;
 }
 
-HomeController.$inject = [];
+HomeController.$inject = ['$scope', 'user'];
 
 export default HomeController;

@@ -1,4 +1,4 @@
-const moduleName = 'myApp.FirebaseAuth';
+const moduleName = 'myApp.Auth';
 
 import Angular from 'angular';
 import AuthRoutes from './auth.routes';
@@ -7,8 +7,9 @@ import AuthService from './auth.service';
 import FlashService from '../../services/flash';
 import LoginController from './login/login.controller';
 import RegisterController from './register/register.controller';
+import Firebase from '../../services/firebase';
 
-const dependencies = [FlashService];
+const dependencies = [Firebase, FlashService];
 
 export default Angular
         .module(moduleName, dependencies)
