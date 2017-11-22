@@ -10,6 +10,7 @@ import FirebaseServices from './services/firebase';
 
 // Features
 import Auth from './features/auth';
+import Home from './features/home';
 
 const dependencies = [
     AngularCookies,
@@ -17,7 +18,8 @@ const dependencies = [
     AngularRoute,
     FirebaseServices,
     // Features
-    Auth
+    Auth,
+    Home
 ];
 
 export default Angular
