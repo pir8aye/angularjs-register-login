@@ -1,4 +1,4 @@
-function Service($rootScope) {
+function FlashService($rootScope) {
 
         function clearFlashMessage () {
             const flash = $rootScope.flash;
@@ -50,6 +50,6 @@ function Service($rootScope) {
     };
 }
 
-Service.$inject = ['$rootScope'];
+FlashService.$inject = ['$rootScope'];
 
-export default Service;
+export default FlashService;
