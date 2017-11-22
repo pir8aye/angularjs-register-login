@@ -22,5 +22,9 @@ module.exports = {
                 test: /\.json$/
             }
         ]
+    },
+    devServer: {
+        contentBase: path.join(__dirname, 'public'),
+        inline: true
     }
 };

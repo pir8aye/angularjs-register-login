@@ -18,7 +18,7 @@
                             <span ng-show="loginForm.password.$dirty && loginForm.password.$error.required" class="help-block">Password is required!</span>
                         </div>
                         <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid || ctrl.isLoading">Login</button>
-                        <a href="#!/register" class="btn btn-link" ng-hide="ctrl.isLoading">Register</a>
+                        <a href="/register" class="btn btn-link" ng-hide="ctrl.isLoading">Register</a>
                         <i class="fa fa-circle-o-notch fa-spin fa-fw" ng-show="ctrl.isLoading"></i>
                     </form>
                 </div>
