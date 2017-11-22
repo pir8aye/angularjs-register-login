@@ -6,7 +6,7 @@ import AngularResource from 'angular-resource';
 import AngularRoute from 'angular-route';
 import AppRoutes from './app.routes';
 import AppRun from './app.run';
-import FirebaseServices from './services/firebase';
+import Firebase from './services/firebase';
 
 // Features
 import Auth from './features/auth';
@@ -16,7 +16,7 @@ const dependencies = [
     AngularCookies,
     AngularResource,
     AngularRoute,
-    FirebaseServices,
+    Firebase,
     // Features
     Auth,
     Home

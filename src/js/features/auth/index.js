@@ -5,11 +5,10 @@ import AuthRoutes from './auth.routes';
 import AuthRun from './auth.run';
 import AuthService from './auth.service';
 import FlashService from '../../services/flash';
-import UserService from '../../services/user';
 import LoginController from './login/login.controller';
 import RegisterController from './register/register.controller';
 
-const dependencies = [FlashService, UserService];
+const dependencies = [FlashService];
 
 export default Angular
         .module(moduleName, dependencies)

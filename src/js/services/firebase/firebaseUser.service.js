@@ -1,6 +1,6 @@
-function Service($firebaseArray, $firebaseObject, Firebase) {
+function FirebaseUserService($firebaseArray, $firebaseObject, FirebaseFactory) {
 
-    var ref = Firebase.database().ref().child('users');
+    var ref = FirebaseFactory.database().ref().child('users');
 
     function handleSuccess(ref) {
         return {
@@ -43,6 +43,6 @@ function Service($firebaseArray, $firebaseObject, Firebase) {
     };
 }
 
-Service.$inject = ['$firebaseArray', '$firebaseObject', 'Firebase'];
+FirebaseUserService.$inject = ['$firebaseArray', '$firebaseObject', 'FirebaseFactory'];
 
-export default Service;
+export default FirebaseUserService;

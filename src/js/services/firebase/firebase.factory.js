@@ -1,6 +1,6 @@
 import Firebase from 'firebase';
 
-function Service() {
+function FirebaseFactory() {
     Firebase.initializeApp({
         apiKey: 'AIzaSyDTs23PtJwxkRE59yPn25nx_26_J1y9eYQ',
         authDomain: 'angularjs-register-login.firebaseapp.com',
@@ -11,6 +11,6 @@ function Service() {
     return Firebase;
 }
 
-Service.$inject = [];
+FirebaseFactory.$inject = [];
 
-export default Service;
+export default FirebaseFactory;
