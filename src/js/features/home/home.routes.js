@@ -2,6 +2,7 @@ function Routes($routeProvider) {
     $routeProvider
             .when('/', {
                 controller: 'HomeController',
+                controllerAs: 'home',
                 resolve: {
                     user: ['$rootScope', 'FirebaseUserService', ($rootScope, FirebaseUserService) => {
                             const uid = $rootScope.globals.currentUser.uid;
