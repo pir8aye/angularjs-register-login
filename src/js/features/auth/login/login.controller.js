@@ -1,25 +1,30 @@
-function LoginController($location, $scope, AuthService, FlashService) {
-    $scope.user = {};
-    $scope.isLoading = false;
-    $scope.loginSubmit = () => {
-        $scope.isLoading = true;
-        const email = $scope.user.email;
-        const password = $scope.user.password;
-        AuthService.loginWithEmail(email, password).then(response => {
+class LoginController {
+    constructor($location, AuthService, FlashService) {
+        this.location = $location;
+        this.AuthService = AuthService;
+        this.FlashService = FlashService;
+        
+        this.AuthService.logout();
+        
+        this.user = {};
+        this.isLoading = false;
+    }
+    loginSubmit () {
+        this.isLoading = true;
+        const email = this.user.email;
+        const password = this.user.password;
+        this.AuthService.loginWithEmail(email, password).then(response => {
             if (response.success) {
-                AuthService.setCurrentUser(response.uid);
-                $location.path("/");
+                this.AuthService.setCurrentUser(response.uid);
+                this.location.path("/");
             } else {
-                FlashService.danger(response.message);
-                $scope.isLoading = false;
+                this.FlashService.danger(response.message);
+                this.isLoading = false;
             }
         });
-    };
-    (() => {
-        AuthService.logout();
-    })();
+    }
 }
 
-LoginController.$inject = ['$location', '$scope', 'AuthService', 'FlashService'];
+LoginController.$inject = ['$location', 'AuthService', 'FlashService'];
 
 export default LoginController;

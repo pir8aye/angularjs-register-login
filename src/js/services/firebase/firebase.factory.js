@@ -1,14 +1,10 @@
 import Firebase from 'firebase';
+import FirebaseConfig from '../../../../firebase.config.json';
 
 function FirebaseFactory() {
     console.log('Initializing Firebase.');
     
-    Firebase.initializeApp({
-        apiKey: 'AIzaSyDTs23PtJwxkRE59yPn25nx_26_J1y9eYQ',
-        authDomain: 'angularjs-register-login.firebaseapp.com',
-        databaseURL: 'https://angularjs-register-login.firebaseio.com',
-        storageBucket: 'angularjs-register-login.appspot.com',
-    });
+    Firebase.initializeApp(FirebaseConfig);
 
     return Firebase;
 }

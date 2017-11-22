@@ -1,26 +1,31 @@
-function RegisterController($location, $scope, AuthService, FlashService, FirebaseUserService) {
-    $scope.user = {};
-    $scope.isLoading = false;
-    $scope.registerSubmit = function () {
-        $scope.isLoading = true;
-        var email = $scope.user.email;
-        var password = $scope.user.password;
-        AuthService.register(email, password).then(function (response) {
+class RegisterController {
+    constructor($location, AuthService, FlashService, FirebaseUserService) {
+        this.user = {};
+        this.isLoading = false;
+
+        this.location = $location;
+        this.AuthService = AuthService;
+        this.FlashService = FlashService;
+        this.FirebaseUserService = FirebaseUserService;
+        AuthService.logout();
+    }
+    registerSubmit() {
+        this.isLoading = true;
+        const email = this.user.email;
+        const password = this.user.password;
+        this.AuthService.register(email, password).then(response => {
             if (response.success) {
-                FirebaseUserService.create(response.uid, $scope.user);
-                FlashService.success('Registration successful', true);
-                $location.path('/login');
+                this.FirebaseUserService.create(response.uid, this.user);
+                this.FlashService.success('Registration successful', true);
+                this.location.path('/login');
             } else {
-                FlashService.danger(response.message);
-                $scope.isLoading = false;
+                this.FlashService.danger(response.message);
+                this.isLoading = false;
             }
         });
-    };
-    (function () {
-        AuthService.logout();
-    })();
+    }
 }
 
-RegisterController.$inject = ['$location', '$scope', 'AuthService', 'FlashService', 'FirebaseUserService'];
+RegisterController.$inject = ['$location', 'AuthService', 'FlashService', 'FirebaseUserService'];
 
 export default RegisterController;
