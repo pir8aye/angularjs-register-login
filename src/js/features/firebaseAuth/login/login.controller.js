@@ -1,4 +1,4 @@
-function Controller($location, $scope, AuthService, FlashService) {
+function LoginController($location, $scope, AuthService, FlashService) {
     $scope.user = {};
     $scope.isLoading = false;
     $scope.loginSubmit = () => {
@@ -20,6 +20,6 @@ function Controller($location, $scope, AuthService, FlashService) {
     })();
 }
 
-Controller.$inject = ['$location', '$scope', 'AuthService', 'FlashService'];
+LoginController.$inject = ['$location', '$scope', 'AuthService', 'FlashService'];
 
-export default Controller;
+export default LoginController;

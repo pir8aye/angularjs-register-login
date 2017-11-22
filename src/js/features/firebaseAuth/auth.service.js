@@ -1,4 +1,4 @@
-function Service($cookieStore, $firebaseAuth, $rootScope, FirebaseFactory) {
+function AuthService($cookieStore, $firebaseAuth, $rootScope, FirebaseFactory) {
 
     const auth = $firebaseAuth(FirebaseFactory.auth());
 
@@ -39,6 +39,6 @@ function Service($cookieStore, $firebaseAuth, $rootScope, FirebaseFactory) {
 
 }
 
-Service.$inject = ['$cookieStore', '$firebaseAuth', '$rootScope', 'FirebaseFactory'];
+AuthService.$inject = ['$cookieStore', '$firebaseAuth', '$rootScope', 'FirebaseFactory'];
 
-export default Service;
+export default AuthService;

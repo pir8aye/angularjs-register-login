@@ -1,4 +1,4 @@
-const moduleName = 'myApp.Auth';
+const moduleName = 'myApp.FirebaseAuth';
 
 import Angular from 'angular';
 import AuthRoutes from './auth.routes';

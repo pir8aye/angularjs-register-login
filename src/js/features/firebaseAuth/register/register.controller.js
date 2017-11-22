@@ -1,4 +1,4 @@
-function Controller($location, $scope, AuthService, FlashService, UserService) {
+function RegisterController($location, $scope, AuthService, FlashService, FirebaseUserService) {
     $scope.user = {};
     $scope.isLoading = false;
     $scope.registerSubmit = function () {
@@ -7,7 +7,7 @@ function Controller($location, $scope, AuthService, FlashService, UserService) {
         var password = $scope.user.password;
         AuthService.register(email, password).then(function (response) {
             if (response.success) {
-                UserService.create(response.uid, $scope.user);
+                FirebaseUserService.create(response.uid, $scope.user);
                 FlashService.success('Registration successful', true);
                 $location.path('/login');
             } else {
@@ -21,6 +21,6 @@ function Controller($location, $scope, AuthService, FlashService, UserService) {
     })();
 }
 
-Controller.$inject = ['$location', '$scope', 'AuthService', 'FlashService', 'UserService'];
+RegisterController.$inject = ['$location', '$scope', 'AuthService', 'FlashService', 'FirebaseUserService'];
 
-export default Controller;
+export default RegisterController;

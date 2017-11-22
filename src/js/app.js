@@ -9,7 +9,7 @@ import AppRun from './app.run';
 import Firebase from './services/firebase';
 
 // Features
-import Auth from './features/auth';
+import FirebaseAuth from './features/firebaseAuth';
 import Home from './features/home';
 
 const dependencies = [
@@ -18,7 +18,7 @@ const dependencies = [
     AngularRoute,
     Firebase,
     // Features
-    Auth,
+    FirebaseAuth,
     Home
 ];
 
