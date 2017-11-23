@@ -21,6 +21,7 @@
         "babel-loader": "^7.1.2",
         "babel-preset-env": "^1.6.1",
         "json-loader": "^0.5.7",
+        "nodemon": "^1.12.1",
         "raw-loader": "^0.5.1",
         "webpack": "^3.8.1",
         "webpack-dev-middleware": "^1.12.1",
