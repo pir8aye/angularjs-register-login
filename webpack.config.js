@@ -14,17 +14,25 @@ module.exports = {
     module: {
         rules: [
             {
-                use: 'babel-loader',
-                test: /\.js$/,
-                exclude: /node_modules/
+                use: ['style-loader', 'css-loader'],
+                test: /\.css$/
             },
             {
                 use: 'raw-loader',
                 test: /\.html$/
             },
             {
+                use: 'babel-loader',
+                test: /\.js$/,
+                exclude: /node_modules/
+            },
+            {
                 use: 'json-loader',
                 test: /\.json$/
+            },
+            {
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+                test: /\.scss$/
             }
         ]
     },

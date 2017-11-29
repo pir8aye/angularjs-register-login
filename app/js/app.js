@@ -1,11 +1,12 @@
-const moduleName = 'myApp';
-
 import Angular from 'angular';
 import AngularCookies from 'angular-cookies';
 import AngularResource from 'angular-resource';
 import AngularRoute from 'angular-route';
 import AppRoutes from './app.routes';
 import AppRun from './app.run';
+
+import '../css/app.css';
+import '../sass/app.scss';
 
 // Features
 import Auth from './features/auth';
@@ -21,7 +22,7 @@ const dependencies = [
 ];
 
 export default Angular
-        .module(moduleName, dependencies)
+        .module('myApp', dependencies)
         .config(AppRoutes)
         .run(AppRun)
         .name;
