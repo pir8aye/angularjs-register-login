@@ -1,6 +1,6 @@
 function FirebaseUserService($firebaseArray, $firebaseObject, FirebaseFactory) {
 
-    var ref = FirebaseFactory.database().ref().child('users');
+    var ref = FirebaseFactory.child('users');
 
     function handleSuccess(ref) {
         return {

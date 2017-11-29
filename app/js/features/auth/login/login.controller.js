@@ -1,24 +1,19 @@
-class LoginController {
-    constructor($location, AuthService, FlashService) {
-        this.location = $location;
-        this.AuthService = AuthService;
-        this.FlashService = FlashService;
-        
-        this.AuthService.logout();
-        
-        this.user = {};
-        this.isLoading = false;
-    }
-    loginSubmit () {
+function LoginController($location, AuthService, FlashService) {
+
+    AuthService.logout();
+
+    this.user = {};
+    this.isLoading = false;
+    this.loginSubmit = () => {
         this.isLoading = true;
         const email = this.user.email;
         const password = this.user.password;
-        this.AuthService.loginWithEmail(email, password).then(response => {
+        AuthService.loginWithEmail(email, password).then(response => {
             if (response.success) {
-                this.AuthService.setCurrentUser(response.uid);
-                this.location.path("/");
+                AuthService.setCurrentUser(response.uid);
+                $location.path("/");
             } else {
-                this.FlashService.danger(response.message);
+                FlashService.danger(response.message);
                 this.isLoading = false;
             }
         });

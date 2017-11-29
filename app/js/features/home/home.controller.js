@@ -1,7 +1,5 @@
-class HomeController {
-    constructor(user) {
-        this.user = user;
-    }
+function HomeController(user) {
+    this.user = user;
 }
 
 HomeController.$inject = ['user'];

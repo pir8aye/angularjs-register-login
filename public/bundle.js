@@ -7124,11 +7124,9 @@ var _firebaseUser2 = _interopRequireDefault(_firebaseUser);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var moduleName = 'myApp.Firebase';
-
 var dependencies = ['firebase'];
 
-exports.default = _angular2.default.module(moduleName, dependencies).factory('FirebaseFactory', _firebase2.default).service('FirebaseUserService', _firebaseUser2.default).name;
+exports.default = _angular2.default.module('myApp.FirebaseService', dependencies).factory('FirebaseFactory', _firebase2.default).service('FirebaseUserService', _firebaseUser2.default).name;
 
 /***/ }),
 /* 44 */
@@ -50714,11 +50712,9 @@ var _firebase2 = _interopRequireDefault(_firebase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var moduleName = 'myApp.Auth';
-
 var dependencies = [_firebase2.default, _flash2.default];
 
-exports.default = _angular2.default.module(moduleName, dependencies).controller('LoginController', _login2.default).controller('ProfileController', _profile2.default).controller('RegisterController', _register2.default).service('AuthService', _auth6.default).config(_auth2.default).run(_auth4.default).name;
+exports.default = _angular2.default.module('myApp.AuthFeature', dependencies).controller('LoginController', _login2.default).controller('ProfileController', _profile2.default).controller('RegisterController', _register2.default).service('AuthService', _auth6.default).config(_auth2.default).run(_auth4.default).name;
 
 /***/ }),
 /* 94 */
@@ -50878,11 +50874,9 @@ var _flash2 = _interopRequireDefault(_flash);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var moduleName = 'myApp.FlashService';
-
 var dependencies = [];
 
-exports.default = _angular2.default.module(moduleName, dependencies).service('FlashService', _flash2.default).name;
+exports.default = _angular2.default.module('myApp.FlashService', dependencies).service('FlashService', _flash2.default).name;
 
 /***/ }),
 /* 101 */
@@ -50894,70 +50888,56 @@ exports.default = _angular2.default.module(moduleName, dependencies).service('Fl
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+function FlashService($rootScope) {
+    var _this = this;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+    $rootScope.$on('$locationChangeStart', function () {
+        _this.clearFlashMessage();
+    });
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var FlashService = function () {
-    function FlashService($rootScope) {
-        var _this = this;
-
-        _classCallCheck(this, FlashService);
-
-        this._rootScope = $rootScope;
-        this._rootScope.$on('$locationChangeStart', function () {
-            var flash = _this._rootScope.flash;
-            if (flash) {
-                if (!flash.keepAfterLocationChange) {
-                    delete _this._rootScope.flash;
-                } else {
-                    flash.keepAfterLocationChange = false;
-                }
+    this.clearFlashMessage = function () {
+        var flash = $rootScope.flash;
+        if (flash) {
+            if (!flash.keepAfterLocationChange) {
+                delete $rootScope.flash;
+            } else {
+                flash.keepAfterLocationChange = false;
             }
-        });
-    }
+        }
+    };
 
-    _createClass(FlashService, [{
-        key: 'danger',
-        value: function danger(message, keepAfterLocationChange) {
-            this._rootScope.flash = {
-                message: message,
-                type: 'danger',
-                keepAfterLocationChange: keepAfterLocationChange
-            };
-        }
-    }, {
-        key: 'info',
-        value: function info(message, keepAfterLocationChange) {
-            this._rootScope.flash = {
-                message: message,
-                type: 'info',
-                keepAfterLocationChange: keepAfterLocationChange
-            };
-        }
-    }, {
-        key: 'success',
-        value: function success(message, keepAfterLocationChange) {
-            this._rootScope.flash = {
-                message: message,
-                type: 'success',
-                keepAfterLocationChange: keepAfterLocationChange
-            };
-        }
-    }, {
-        key: 'warning',
-        value: function warning(message, keepAfterLocationChange) {
-            this._rootScope.flash = {
-                message: message,
-                type: 'warning',
-                keepAfterLocationChange: keepAfterLocationChange
-            };
-        }
-    }]);
+    this.danger = function (message, keepAfterLocationChange) {
+        $rootScope.flash = {
+            message: message,
+            type: 'danger',
+            keepAfterLocationChange: keepAfterLocationChange
+        };
+    };
 
-    return FlashService;
-}();
+    this.info = function (message, keepAfterLocationChange) {
+        $rootScope.flash = {
+            message: message,
+            type: 'info',
+            keepAfterLocationChange: keepAfterLocationChange
+        };
+    };
+
+    this.success = function (message, keepAfterLocationChange) {
+        $rootScope.flash = {
+            message: message,
+            type: 'success',
+            keepAfterLocationChange: keepAfterLocationChange
+        };
+    };
+
+    this.warning = function (message, keepAfterLocationChange) {
+        $rootScope.flash = {
+            message: message,
+            type: 'warning',
+            keepAfterLocationChange: keepAfterLocationChange
+        };
+    };
+}
 
 FlashService.$inject = ['$rootScope'];
 
@@ -50973,47 +50953,28 @@ exports.default = FlashService;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+function LoginController($location, AuthService, FlashService) {
+    var _this = this;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+    AuthService.logout();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var LoginController = function () {
-    function LoginController($location, AuthService, FlashService) {
-        _classCallCheck(this, LoginController);
-
-        this.location = $location;
-        this.AuthService = AuthService;
-        this.FlashService = FlashService;
-
-        this.AuthService.logout();
-
-        this.user = {};
-        this.isLoading = false;
-    }
-
-    _createClass(LoginController, [{
-        key: 'loginSubmit',
-        value: function loginSubmit() {
-            var _this = this;
-
-            this.isLoading = true;
-            var email = this.user.email;
-            var password = this.user.password;
-            this.AuthService.loginWithEmail(email, password).then(function (response) {
-                if (response.success) {
-                    _this.AuthService.setCurrentUser(response.uid);
-                    _this.location.path("/");
-                } else {
-                    _this.FlashService.danger(response.message);
-                    _this.isLoading = false;
-                }
-            });
-        }
-    }]);
-
-    return LoginController;
-}();
+    this.user = {};
+    this.isLoading = false;
+    this.loginSubmit = function () {
+        _this.isLoading = true;
+        var email = _this.user.email;
+        var password = _this.user.password;
+        AuthService.loginWithEmail(email, password).then(function (response) {
+            if (response.success) {
+                AuthService.setCurrentUser(response.uid);
+                $location.path("/");
+            } else {
+                FlashService.danger(response.message);
+                _this.isLoading = false;
+            }
+        });
+    };
+}
 
 LoginController.$inject = ['$location', 'AuthService', 'FlashService'];
 
@@ -51029,38 +50990,23 @@ exports.default = LoginController;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+function ProfileController(user, FirebaseUserService, FlashService) {
+    var _this = this;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+    this.user = user;
+    this.isLoading = false;
+    this.formSubmit = function () {
+        _this.isLoading = true;
+        FirebaseUserService.update(_this.user.$id, _this.user).then(function (response) {
+            if (response.success) {
+                FlashService.success('Profile successfully updated!');
+            }
+            _this.isLoading = false;
+        });
+    };
+}
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var ProfileController = function () {
-    function ProfileController(user, FirebaseUserService) {
-        _classCallCheck(this, ProfileController);
-
-        this.user = user;
-        this.userId = this.user.$id;
-        this.isLoading = false;
-        this.FirebaseUserService = FirebaseUserService;
-    }
-
-    _createClass(ProfileController, [{
-        key: 'formSubmit',
-        value: function formSubmit() {
-            var _this = this;
-
-            this.isLoading = true;
-            this.FirebaseUserService.update(this.userId, this.user).then(function (response) {
-                if (response.success) {}
-                _this.isLoading = false;
-            });
-        }
-    }]);
-
-    return ProfileController;
-}();
-
-ProfileController.$inject = ['user', 'FirebaseUserService'];
+ProfileController.$inject = ['user', 'FirebaseUserService', 'FlashService'];
 
 exports.default = ProfileController;
 
@@ -51074,48 +51020,29 @@ exports.default = ProfileController;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+function RegisterController($location, AuthService, FlashService, FirebaseUserService) {
+    var _this = this;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+    AuthService.logout();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var RegisterController = function () {
-    function RegisterController($location, AuthService, FlashService, FirebaseUserService) {
-        _classCallCheck(this, RegisterController);
-
-        this.user = {};
-        this.isLoading = false;
-
-        this.location = $location;
-        this.AuthService = AuthService;
-        this.FlashService = FlashService;
-        this.FirebaseUserService = FirebaseUserService;
-        AuthService.logout();
-    }
-
-    _createClass(RegisterController, [{
-        key: 'registerSubmit',
-        value: function registerSubmit() {
-            var _this = this;
-
-            this.isLoading = true;
-            var email = this.user.email;
-            var password = this.user.password;
-            this.AuthService.register(email, password).then(function (response) {
-                if (response.success) {
-                    _this.FirebaseUserService.create(response.uid, _this.user);
-                    _this.FlashService.success('Registration successful', true);
-                    _this.location.path('/login');
-                } else {
-                    _this.FlashService.danger(response.message);
-                    _this.isLoading = false;
-                }
-            });
-        }
-    }]);
-
-    return RegisterController;
-}();
+    this.user = {};
+    this.isLoading = false;
+    this.registerSubmit = function () {
+        _this.isLoading = true;
+        var email = _this.user.email;
+        var password = _this.user.password;
+        AuthService.register(email, password).then(function (response) {
+            if (response.success) {
+                FirebaseUserService.create(response.uid, _this.user);
+                FlashService.success('Registration successful', true);
+                $location.path('/login');
+            } else {
+                FlashService.danger(response.message);
+                _this.isLoading = false;
+            }
+        });
+    };
+}
 
 RegisterController.$inject = ['$location', 'AuthService', 'FlashService', 'FirebaseUserService'];
 
@@ -54510,15 +54437,21 @@ var _firebaseConfig2 = _interopRequireDefault(_firebaseConfig);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function FirebaseFactory() {
-    console.log('Initializing Firebase.');
-
     _firebase2.default.initializeApp(_firebaseConfig2.default);
-
-    return _firebase2.default;
+    return {
+        auth: function auth() {
+            return _firebase2.default.auth();
+        },
+        child: function child(path) {
+            return this.ref().child(path);
+        },
+        ref: function ref() {
+            return _firebase2.default.database().ref();
+        }
+    };
 }
 
 FirebaseFactory.$inject = [];
-
 exports.default = FirebaseFactory;
 
 /***/ }),
@@ -66432,7 +66365,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 function FirebaseUserService($firebaseArray, $firebaseObject, FirebaseFactory) {
 
-    var ref = FirebaseFactory.database().ref().child('users');
+    var ref = FirebaseFactory.child('users');
 
     function handleSuccess(ref) {
         return {
@@ -66508,11 +66441,9 @@ var _firebase2 = _interopRequireDefault(_firebase);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var moduleName = 'myApp.Home';
-
 var dependencies = [_firebase2.default];
 
-exports.default = _angular2.default.module(moduleName, dependencies).controller('HomeController', _home4.default).config(_home2.default).name;
+exports.default = _angular2.default.module('myApp.HomeFeature', dependencies).controller('HomeController', _home4.default).config(_home2.default).name;
 
 /***/ }),
 /* 197 */
@@ -66527,7 +66458,7 @@ Object.defineProperty(exports, "__esModule", {
 function Routes($routeProvider) {
     $routeProvider.when('/', {
         controller: 'HomeController',
-        controllerAs: 'home',
+        controllerAs: 'ctrl',
         resolve: {
             user: ['$rootScope', 'FirebaseUserService', function ($rootScope, FirebaseUserService) {
                 var uid = $rootScope.globals.currentUser.uid;
@@ -66547,7 +66478,7 @@ exports.default = Routes;
 /* 198 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"jumbotron\">\n                <h1>Hello, {{home.user.forename}}!</h1>\n                <p>...</p>\n            </div>\n        </div>\n        <div class=\"col-md-2\"></div>\n    </div>\n</div>"
+module.exports = "<div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-10\">\n            <div class=\"jumbotron\">\n                <h1>Hello, {{ctrl.user.forename}}!</h1>\n                <p>...</p>\n            </div>\n        </div>\n        <div class=\"col-md-2\"></div>\n    </div>\n</div>"
 
 /***/ }),
 /* 199 */
@@ -66559,14 +66490,9 @@ module.exports = "<div class=\"container\">\n    <div class=\"row\">\n        <d
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var HomeController = function HomeController(user) {
-    _classCallCheck(this, HomeController);
-
+function HomeController(user) {
     this.user = user;
-};
+}
 
 HomeController.$inject = ['user'];
 

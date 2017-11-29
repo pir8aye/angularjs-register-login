@@ -1,14 +1,13 @@
-const moduleName = 'myApp.Home';
-
 import Angular from 'angular';
 import HomeRoutes from './home.routes';
 import HomeController from './home.controller';
-import Firebase from '../../services/firebase';
+import FirebaseService from '../../services/firebase';
+import SocketService from '../../services/socket';
 
-const dependencies = [Firebase];
+const dependencies = [FirebaseService, SocketService];
 
 export default Angular
-        .module(moduleName, dependencies)
+        .module('myApp.HomeFeature', dependencies)
         .controller('HomeController', HomeController)
         .config(HomeRoutes)
         .name;
