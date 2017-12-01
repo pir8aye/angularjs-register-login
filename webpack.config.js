@@ -1,12 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const uglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-    entry: './app/js/app.js',
+    entry: {
+        bundle: './app/app.js',
+        vendor: ['angular', 'angular-cookies', 'angular-resource', 'angular-route']
+    },
     output: {
         path: path.join(__dirname, 'public'),
-        filename: 'bundle.js'
+        filename: '[name].js'
     },
     devServer: {
         contentBase: path.join(__dirname, 'public'),
@@ -42,8 +45,11 @@ module.exports = {
         ]
     },
     plugins: [
-        new UglifyJsPlugin({
+        new uglifyJsPlugin({
             test: /\.js($|\?)/i
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
         }),
         new webpack.ProvidePlugin({
             $: "jquery",
