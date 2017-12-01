@@ -1,5 +1,5 @@
 import Firebase from 'firebase';
-import FirebaseConfig from '../../../../firebase.config.json';
+import FirebaseConfig from '../../../firebase.config.json';
 
 function FirebaseFactory() {
     Firebase.initializeApp(FirebaseConfig);

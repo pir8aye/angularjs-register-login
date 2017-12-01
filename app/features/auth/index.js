@@ -8,6 +8,9 @@ import ProfileController from './profile/profile.controller';
 import RegisterController from './register/register.controller';
 import FirebaseService from '../../services/firebase';
 
+import './auth.css';
+import './auth.scss';
+
 const dependencies = [FirebaseService, FlashService];
 
 export default Angular

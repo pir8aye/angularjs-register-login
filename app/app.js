@@ -9,8 +9,8 @@ import 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.css';
-import '../css/app.css';
-import '../sass/app.scss';
+import './app.css';
+import './app.scss';
 
 // Features
 import Auth from './features/auth';
