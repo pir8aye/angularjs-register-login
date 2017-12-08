@@ -17,7 +17,7 @@ function LoginController($location, AuthService, FlashService) {
                 this.isLoading = false;
             }
         });
-    }
+    };
 }
 
 LoginController.$inject = ['$location', 'AuthService', 'FlashService'];

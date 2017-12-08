@@ -23,10 +23,5 @@ const server = require('http').createServer(app);
 server.listen(process.env.PORT || 3000, () => console.log('Express server listening on port %d', server.address().port));
 
 // 
-const users = {};
 const io = require('socket.io')(server);
-io.sockets.on('connection', socket => {
-    socket.on('disconnect', () => {
-        
-    });
-});
+io.sockets.on('connection', socket => require('./routes/sockets')(io, socket));
