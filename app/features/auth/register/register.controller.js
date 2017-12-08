@@ -1,4 +1,4 @@
-function RegisterController($location, AuthService, FlashService, FirebaseUserService) {
+function RegisterController($location, AuthService, FlashService, UserFactory) {
 
     AuthService.logout();
 
@@ -10,7 +10,7 @@ function RegisterController($location, AuthService, FlashService, FirebaseUserSe
         const password = this.user.password;
         AuthService.register(email, password).then(response => {
             if (response.success) {
-                FirebaseUserService.create(response.uid, this.user);
+                UserFactory.create(response.uid, this.user);
                 FlashService.success('Registration successful', true);
                 $location.path('/login');
             } else {
@@ -21,6 +21,6 @@ function RegisterController($location, AuthService, FlashService, FirebaseUserSe
     };
 }
 
-RegisterController.$inject = ['$location', 'AuthService', 'FlashService', 'FirebaseUserService'];
+RegisterController.$inject = ['$location', 'AuthService', 'FlashService', 'UserFactory'];
 
 export default RegisterController;

@@ -1,9 +1,9 @@
-function ProfileController(user, FirebaseUserService, FlashService) {
+function ProfileController(user, FlashService, UserFactory) {
     this.user = user;
     this.isLoading = false;
     this.formSubmit = () => {
         this.isLoading = true;
-        FirebaseUserService.update(this.user.$id, this.user).then(response => {
+        UserFactory.update(this.user.$id, this.user).then(response => {
             if (response.success) {
                 FlashService.success('Profile successfully updated!');
             }
@@ -12,6 +12,6 @@ function ProfileController(user, FirebaseUserService, FlashService) {
     };
 }
 
-ProfileController.$inject = ['user', 'FirebaseUserService', 'FlashService'];
+ProfileController.$inject = ['user', 'FlashService', 'UserFactory'];
 
 export default ProfileController;

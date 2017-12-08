@@ -13,8 +13,9 @@ function FirebaseFactory() {
         ref: function () {
             return Firebase.database().ref();
         }
-    }
+    };
 }
 
 FirebaseFactory.$inject = [];
+
 export default FirebaseFactory;

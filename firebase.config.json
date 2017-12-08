@@ -1,6 +1,6 @@
 {
-    "apiKey": "AIzaSyDTs23PtJwxkRE59yPn25nx_26_J1y9eYQ",
-    "authDomain": "angularjs-register-login.firebaseapp.com",
-    "databaseURL": "https://angularjs-register-login.firebaseio.com",
-    "storageBucket": "angularjs-register-login.appspot.com"
+    "apiKey": "<your-api-key>",
+    "authDomain": "<your-auth-domain>",
+    "databaseURL": "<your-database-url>",
+    "storageBucket": "<your-storage-bucket>"
 }
