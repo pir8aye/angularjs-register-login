@@ -9,7 +9,7 @@ function ProfileController(user, FirebaseUserService, FlashService) {
             }
             this.isLoading = false;
         });
-    }
+    };
 }
 
 ProfileController.$inject = ['user', 'FirebaseUserService', 'FlashService'];

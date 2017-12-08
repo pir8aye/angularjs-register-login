@@ -1,8 +1,9 @@
 function FirebaseUserService($firebaseArray, $firebaseObject, FirebaseFactory) {
 
-    var ref = FirebaseFactory.child('users');
+    const ref = FirebaseFactory.child('users');
 
     function handleSuccess(ref) {
+        console.log(ref)
         return {
             success: true
         };
@@ -14,32 +15,32 @@ function FirebaseUserService($firebaseArray, $firebaseObject, FirebaseFactory) {
             success: false
         };
     }
-
+    
     this.create = function (uid, data) {
-        var user = $firebaseObject(ref.child(uid));
+        let user = $firebaseObject(ref.child(uid));
         user.forename = data.forename;
         user.surname = data.surname;
         return user.$save().then(handleSuccess, handleError);
     };
 
     this.delete = function (uid) {
-        var user = $firebaseObject(ref.child(uid));
+        let user = $firebaseObject(ref.child(uid));
         user.$remove().then(handleSuccess, handleError);
     };
 
-    this.update = function (uid, data) {
-        var user = $firebaseObject(ref.child(uid));
-        user.forename = data.forename;
-        user.surname = data.surname;
-        return user.$save().then(handleSuccess, handleError);
+    this.get = function (uid) {
+        return $firebaseObject(ref.child(uid));
     };
 
     this.getAll = function () {
         return $firebaseArray(ref);
     };
 
-    this.getByUID = function (uid) {
-        return $firebaseObject(ref.child(uid));
+    this.update = function (uid, data) {
+        let user = $firebaseObject(ref.child(uid));
+        user.forename = data.forename;
+        user.surname = data.surname;
+        return user.$save().then(handleSuccess, handleError);
     };
 }
 

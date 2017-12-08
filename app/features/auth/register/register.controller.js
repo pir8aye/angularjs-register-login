@@ -18,7 +18,7 @@ function RegisterController($location, AuthService, FlashService, FirebaseUserSe
                 this.isLoading = false;
             }
         });
-    }
+    };
 }
 
 RegisterController.$inject = ['$location', 'AuthService', 'FlashService', 'FirebaseUserService'];

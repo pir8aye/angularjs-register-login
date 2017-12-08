@@ -12,7 +12,7 @@ function Routes($routeProvider) {
                 resolve: {
                     user: ['$rootScope', 'FirebaseUserService', ($rootScope, FirebaseUserService) => {
                             const uid = $rootScope.globals.currentUser.uid;
-                            return FirebaseUserService.getByUID(uid).$loaded();
+                            return FirebaseUserService.get(uid).$loaded();
                         }
                     ]
                 },
