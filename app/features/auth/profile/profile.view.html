@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="page-header">
+                <h1>Update Profile</h1>
+            </div>
+            <form name="form" ng-submit="ctrl.formSubmit()">
+                <div class="form-group" ng-class="{'has-error': form.forename.$dirty && form.forename.$error.required}">
+                    <label for="forename-input" class="control-label">Forename <span class="text-danger">*</span></label>
+                    <input type="text" id="forename-input" class="form-control" name="forename" autocomplete="off" ng-disabled="isLoading" ng-model="ctrl.user.forename" required />
+                    <span ng-show="form.forename.$dirty && form.forename.$error.required" class="help-block">Forename is required!</span>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.surname.$dirty && form.surname.$error.required}">
+                    <label for="surname-input" class="control-label">Surname <span class="text-danger">*</span></label>
+                    <input type="text" id="surname-input" class="form-control" name="surname" autocomplete="off" ng-disabled="isLoading" ng-model="ctrl.user.surname" required />
+                    <span ng-show="form.surname.$dirty && form.surname.$error.required" class="help-block">Surname is required!</span>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-disabled="form.$invalid || ctrl.isLoading">Save Changes</button>
+                <i class="fa fa-circle-o-notch fa-spin fa-fw" ng-show="ctrl.isLoading"></i>
+            </form>
+         </div>
+    </div>
+</div>

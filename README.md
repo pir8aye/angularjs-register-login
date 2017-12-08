@@ -5,28 +5,20 @@
 A basic example of user registration and login using AngularJS and Firebase.
 
 ## Installation
-* Clone this repo to a folder on your server.
-* Activate mod_rewrite, route all traffic to application's public/ folder.
 
-### Create an Account
-The first thing you need to do is sign up for a free Firebase account and create a project.
-
-### Add Firebase to the Project
-You will need to initialise the Firebase SDK. To do this you'll need to update the core app file in public/js and change the following code with your projects information:
+Go to project folder and run the npm install command;
 
 ```bash
-var config = {
-    apiKey: '<your-api-key>',
-    authDomain: '<your-auth-domain>',
-    databaseURL: '<your-database-url>',
-    storageBucket: '<your-storage-bucket>'
-  };
+npm install
 ```
 
-### Install Bower Components
-Go to project folder and run the bower install command;
+You will need to initialise the Firebase SDK. To do this you'll need to create a `firebase.config.json` file in the application's root folder and add the following with your projects information:
 
-```bash
-bower install
+```json
+{
+    "apiKey": "<your-api-key>",
+    "authDomain": "<your-auth-domain>",
+    "databaseURL": "<your-database-url>",
+    "storageBucket": "<your-storage-bucket>"
+}
 ```
-
