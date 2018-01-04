@@ -31,3 +31,4 @@ firebaseConfig: {
 [AngularJS Environment Plugin](https://github.com/juanpablob/angular-environment/)
 [AngularFire](https://github.com/firebase/angularfire/)
 [ECMAScript 6 New Features: Overview & Comparison](http://es6-features.org/)
+[Socket.IO](https://socket.io/)
