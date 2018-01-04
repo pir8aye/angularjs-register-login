@@ -1,7 +1,8 @@
 import Firebase from 'firebase';
 
 function FirebaseFactory(envService) {
-    Firebase.initializeApp(envService.read('firebaseConfig'));
+    const config = envService.read('firebaseConfig');
+    Firebase.initializeApp(config);
     return {
         auth: function () {
             return Firebase.auth();

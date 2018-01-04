@@ -1,6 +1,6 @@
 function LoginController($location, AuthService, FlashService) {
 
-    AuthService.logout();
+    AuthService.removeCurrentUser();
 
     this.user = {};
     this.isLoading = false;

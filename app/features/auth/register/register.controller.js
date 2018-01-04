@@ -1,6 +1,6 @@
 function RegisterController($location, AuthService, FlashService, UserFactory) {
 
-    AuthService.logout();
+    AuthService.removeCurrentUser();
 
     this.user = {};
     this.isLoading = false;
@@ -8,7 +8,7 @@ function RegisterController($location, AuthService, FlashService, UserFactory) {
         this.isLoading = true;
         const email = this.user.email;
         const password = this.user.password;
-        AuthService.register(email, password).then(response => {
+        AuthService.registerWithEmail(email, password).then(response => {
             if (response.success) {
                 UserFactory.create(response.uid, this.user);
                 FlashService.success('Registration successful', true);
