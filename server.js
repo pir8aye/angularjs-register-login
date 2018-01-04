@@ -20,7 +20,7 @@ app.get('*', (req, res) => {
 
 // 
 const server = require('http').createServer(app);
-server.listen(process.env.PORT || 8082, () => console.log('Express server listening on port %d', server.address().port));
+server.listen(process.env.PORT || 3000, () => console.log('Express server listening on port %d', server.address().port));
 
 // 
 const io = require('socket.io')(server);
