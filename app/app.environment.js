@@ -7,15 +7,23 @@ function Environment(envServiceProvider) {
         vars: {
             development: {
                 apiUrl: '//api.example.dev.local/v1',
-                staticUrl: '//static.example.dev.local'
+                staticUrl: '//static.example.dev.local',
+                firebaseConfig: {
+                    apiKey: '<your-api-key>',
+                    authDomain: '<your-auth-domain>',
+                    databaseURL: '<your-database-url>',
+                    storageBucket: '<your-storage-bucket>'
+                }
             },
             production: {
                 apiUrl: '//api.example.com/v1',
-                staticUrl: '//static.example.com'
-            },
-            defaults: {
-                apiUrl: '//api.default.com/v1',
-                staticUrl: '//static.default.com'
+                staticUrl: '//static.example.com',
+                firebaseConfig: {
+                    apiKey: '<your-api-key>',
+                    authDomain: '<your-auth-domain>',
+                    databaseURL: '<your-database-url>',
+                    storageBucket: '<your-storage-bucket>'
+                }
             }
         }
     });
