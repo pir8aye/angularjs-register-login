@@ -31,10 +31,6 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                use: 'json-loader',
-                test: /\.json$/
-            },
-            {
                 use: ['style-loader', 'css-loader', 'sass-loader'],
                 test: /\.scss$/
             },

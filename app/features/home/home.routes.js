@@ -4,9 +4,9 @@ function Routes($routeProvider) {
                 controller: 'HomeController',
                 controllerAs: 'ctrl',
                 resolve: {
-                    user: ['$rootScope', 'FirebaseUserService', ($rootScope, FirebaseUserService) => {
+                    user: ['$rootScope', 'UserFactory', ($rootScope, UserFactory) => {
                             const uid = $rootScope.globals.currentUser.uid;
-                            return FirebaseUserService.getByUID(uid).$loaded();
+                            return UserFactory.get(uid).$loaded();
                         }
                     ]
                 },

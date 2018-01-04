@@ -1,8 +1,8 @@
 import Firebase from 'firebase';
-import FirebaseConfig from '../../../firebase.config.json';
 
-function FirebaseFactory() {
-    Firebase.initializeApp(FirebaseConfig);
+function FirebaseFactory(envService) {
+    const config = envService.read('firebaseConfig');
+    Firebase.initializeApp(config);
     return {
         auth: function () {
             return Firebase.auth();
@@ -13,8 +13,9 @@ function FirebaseFactory() {
         ref: function () {
             return Firebase.database().ref();
         }
-    }
+    };
 }
 
-FirebaseFactory.$inject = [];
+FirebaseFactory.$inject = ['envService'];
+
 export default FirebaseFactory;

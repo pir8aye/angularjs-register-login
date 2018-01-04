@@ -1,6 +1,6 @@
 function LoginController($location, AuthService, FlashService) {
 
-    AuthService.logout();
+    AuthService.removeCurrentUser();
 
     this.user = {};
     this.isLoading = false;
@@ -17,7 +17,7 @@ function LoginController($location, AuthService, FlashService) {
                 this.isLoading = false;
             }
         });
-    }
+    };
 }
 
 LoginController.$inject = ['$location', 'AuthService', 'FlashService'];
