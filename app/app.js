@@ -1,7 +1,9 @@
 import Angular from 'angular';
 import AngularCookies from 'angular-cookies';
+import AngularEnvironment from 'angular-environment';
 import AngularResource from 'angular-resource';
 import AngularRoute from 'angular-route';
+import AppEnvironment from './app.environment';
 import AppRoutes from './app.routes';
 import AppRun from './app.run';
 
@@ -18,6 +20,7 @@ import Home from './features/home';
 
 const dependencies = [
     AngularCookies,
+    AngularEnvironment,
     AngularResource,
     AngularRoute,
     // Features
@@ -27,6 +30,7 @@ const dependencies = [
 
 export default Angular
         .module('myApp', dependencies)
+        .config(AppEnvironment)
         .config(AppRoutes)
         .run(AppRun)
         .name;
