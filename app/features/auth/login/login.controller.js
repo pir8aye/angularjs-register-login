@@ -11,7 +11,7 @@ function LoginController($location, AuthService, FlashService) {
         AuthService.loginWithEmail(email, password).then(response => {
             if (response.success) {
                 AuthService.setCurrentUser(response.uid);
-                $location.path("/");
+                $location.path('/');
             } else {
                 FlashService.danger(response.message);
                 this.isLoading = false;

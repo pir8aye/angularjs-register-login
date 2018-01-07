@@ -1,3 +1,10 @@
+import 'jquery';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.css';
+import './app.css';
+import './app.scss';
+
 import Angular from 'angular';
 import AngularCookies from 'angular-cookies';
 import AngularEnvironment from 'angular-environment';
@@ -6,13 +13,6 @@ import AngularRoute from 'angular-route';
 import AppEnvironment from './app.environment';
 import AppRoutes from './app.routes';
 import AppRun from './app.run';
-
-import 'jquery';
-import 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.css';
-import './app.css';
-import './app.scss';
 
 // Features
 import Auth from './features/auth';
